@@ -19,6 +19,16 @@ public class TimeSlot {
         this.endTime = endTime;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
     @Override
     public String toString() {
         return "Date: " + date + " Start: " + startTime + " End: " + endTime;

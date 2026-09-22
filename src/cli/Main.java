@@ -2,6 +2,7 @@ package cli;
 
 import exception.CalendarException;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Scanner;
  * exception is shown as {@code "Unexpected error: ..."}.
  */
 public class Main {
-    protected Scanner sc = new Scanner(System.in);
+    protected Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8);
     protected CommandLineDispatcher cld = new CommandLineDispatcher(sc);
 
     public void run() {

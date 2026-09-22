@@ -5,9 +5,9 @@ import model.Calendar;
 import persistence.CalendarSerializer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -88,19 +88,19 @@ public class FileManager {
 
     private String readFile(File file) {
         StringBuilder content = new StringBuilder();
-        try (Scanner reader = new Scanner(file)) {
+        try (Scanner reader = new Scanner(file, StandardCharsets.UTF_8)) {
             while (reader.hasNextLine()) {
                 content.append(reader.nextLine());
                 content.append(System.lineSeparator());
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             throw new FileOperationException("File not found: " + file.getName());
         }
         return content.toString();
     }
 
     private void writeToFile(Calendar calendar, String fileName) {
-        try (FileWriter writer = new FileWriter(fileName)) {
+        try (FileWriter writer = new FileWriter(fileName, StandardCharsets.UTF_8)) {
             writer.write(calendarSerializer.serialize(calendar));
         } catch (IOException e) {
             throw new FileOperationException("Could not write to file: " + fileName);
