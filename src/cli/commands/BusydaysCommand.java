@@ -1,6 +1,7 @@
 package cli.commands;
 
 
+import exception.InvalidCommandException;
 import parser.DateParser;
 import service.CalendarManager;
 
@@ -24,7 +25,7 @@ public class BusydaysCommand implements Command {
     @Override
     public void execute(String[] args) {
         if (args.length != 3) {
-            throw new IllegalArgumentException("Invalid number of arguments");
+            throw new InvalidCommandException("Usage: busydays <from> <to>");
         }
 
         LocalDate fromDate = dateParser.parseDate(args[1]);

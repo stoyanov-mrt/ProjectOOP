@@ -1,5 +1,6 @@
 package cli.commands;
 
+import exception.InvalidCommandException;
 import model.Task;
 import parser.DateParser;
 import service.CalendarManager;
@@ -19,7 +20,7 @@ public class BookCommand implements Command {
     @Override
     public void execute(String[] args) {
         if (args.length != 6) {
-            throw new IllegalArgumentException("Wrong number of arguments");
+            throw new InvalidCommandException("Usage: book <date> <starttime> <endtime> <name> <note>");
         }
         String name = args[4];
         String note = args[5];

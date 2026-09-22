@@ -1,5 +1,6 @@
 package cli.commands;
 
+import exception.InvalidCommandException;
 import exception.InvalidTimeFormatException;
 import model.TimeSlot;
 import parser.DateParser;
@@ -19,7 +20,7 @@ public class FindSlotCommand implements Command {
     @Override
     public void execute(String[] args) {
         if (args.length != 3) {
-            throw new IllegalArgumentException("Invalid number of arguments");
+            throw new InvalidCommandException("Usage: findslot <fromdate> <hours>");
         }
 
         double hours;

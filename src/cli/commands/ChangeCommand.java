@@ -1,14 +1,11 @@
 package cli.commands;
 
-import exception.TaskNotFoundException;
-import model.Task;
+import exception.InvalidCommandException;
 import parser.DateParser;
 import service.CalendarManager;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
 
 public class ChangeCommand implements Command {
     private DateParser dateParser;
@@ -23,7 +20,7 @@ public class ChangeCommand implements Command {
     public void execute(String[] args) {
 
         if (args.length != 5) {
-            throw new IllegalArgumentException("Wrong number of arguments");
+            throw new InvalidCommandException("Usage: change <date> <starttime> <option> <newvalue>");
         }
 
         LocalDate date = dateParser.parseDate(args[1]);

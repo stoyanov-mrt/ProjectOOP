@@ -1,5 +1,6 @@
 package cli.commands;
 
+import exception.InvalidCommandException;
 import model.Task;
 import parser.DateParser;
 import service.CalendarManager;
@@ -19,7 +20,7 @@ public class UnbookCommand implements Command {
     @Override
     public void execute(String[] args) {
         if (args.length != 4) {
-            throw new IllegalArgumentException("Wrong number of arguments");
+            throw new InvalidCommandException("Usage: unbook <date> <starttime> <endtime>");
         }
         LocalDate unbookDate = dateParser.parseDate(args[1]);
         LocalTime unbookStartTime = dateParser.parseTime(args[2]);

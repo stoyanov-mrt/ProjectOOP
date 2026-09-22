@@ -1,5 +1,6 @@
 package cli.commands;
 
+import exception.InvalidCommandException;
 import parser.DateParser;
 import service.CalendarManager;
 
@@ -17,7 +18,7 @@ public class AgendaCommand implements Command {
     @Override
     public void execute(String[] args) {
         if (args.length != 2) {
-            throw new IllegalArgumentException("Wrong number of arguments");
+            throw new InvalidCommandException("Usage: agenda <date>");
         }
         LocalDate agendaDate = dateParser.parseDate(args[1]);
         calendarManager.getAgenda(agendaDate);

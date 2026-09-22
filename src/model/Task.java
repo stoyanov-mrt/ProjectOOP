@@ -25,6 +25,10 @@ public class Task implements Comparable<Task>{
     }
     public Task(Task task) {
         this.name = task.name;
+        this.note = task.note;
+        this.date = task.date;
+        this.startTime = task.startTime;
+        this.endTime = task.endTime;
     }
 
     public Task(LocalTime startTime) {

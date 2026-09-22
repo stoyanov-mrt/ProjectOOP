@@ -1,6 +1,6 @@
 package exception;
 
-public class InvalidHolidayException extends RuntimeException {
+public class InvalidHolidayException extends CalendarException {
     public InvalidHolidayException(String message) {
         super(message);
     }

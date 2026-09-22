@@ -1,5 +1,6 @@
 package cli.commands;
 
+import exception.InvalidCommandException;
 import model.Task;
 import service.CalendarManager;
 
@@ -15,7 +16,7 @@ public class FindCommand implements Command {
     @Override
     public void execute(String[] args) {
         if (args.length != 2) {
-            throw new IllegalArgumentException("Wrong number of arguments");
+            throw new InvalidCommandException("Usage: find <string>");
         }
 
         String keyword = args[1];
