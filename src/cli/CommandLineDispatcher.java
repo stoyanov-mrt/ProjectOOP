@@ -16,7 +16,15 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parses each line of user input into a command name and arguments,
+ * looks up the matching {@link Command} by name, and runs it. Also
+ * enforces the rule that every command besides
+ * {@code help}/{@code commands}/{@code open}/{@code exit} requires a
+ * calendar file to already be open (see {@link Command#requiresOpenCalendar()}).
+ */
 public class CommandLineDispatcher {
+    /** Matches either a {@code "quoted phrase"} or a run of non-space characters. */
     private static final Pattern TOKEN_PATTERN = Pattern.compile("\"([^\"]*)\"|(\\S+)");
 
     private Map<String, Command> commands = new HashMap<>();
@@ -25,6 +33,13 @@ public class CommandLineDispatcher {
     CalendarManager calendarManager = new CalendarManager();
     DateParser dateParser = new DateParser();
 
+    /**
+     * Wires up every supported {@link Command} and their shared
+     * dependencies (calendar state, date parsing, file I/O).
+     *
+     * @param scanner the shared input scanner, passed through to
+     *                {@link MergeCommand} for its interactive conflict prompts
+     */
     public CommandLineDispatcher(Scanner scanner) {
         CalendarSerializer calendarSerializer = new CalendarSerializer();
         FileManager fileManager = new FileManager(calendarSerializer);
@@ -52,6 +67,13 @@ public class CommandLineDispatcher {
         commands.put(command.getName(), command);
     }
 
+    /**
+     * Tokenizes {@code input}, resolves its first token to a registered
+     * {@link Command}, and executes it.
+     *
+     * @throws InvalidCommandException if the command name is unrecognized,
+     *         or the command requires an open calendar and none is open
+     */
     public void doCommand(String input) {
         if (input == null || input.isBlank()) {
             return;
@@ -73,6 +95,11 @@ public class CommandLineDispatcher {
         command.execute(tokens);
     }
 
+    /**
+     * Splits {@code input} on whitespace, treating a {@code "quoted phrase"}
+     * as a single token so multi-word arguments (a task name, a note, a
+     * file path with spaces) can be passed without ambiguity.
+     */
     private String[] tokenize(String input) {
         List<String> tokens = new ArrayList<>();
         Matcher matcher = TOKEN_PATTERN.matcher(input);

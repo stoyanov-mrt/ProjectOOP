@@ -6,6 +6,7 @@ import service.FileManager;
 
 import java.io.File;
 
+/** {@code save} — writes the current calendar back to the file it was opened from. */
 public class SaveCommand implements Command {
     private final CalendarManager calendarManager;
     private final FileManager fileManager;

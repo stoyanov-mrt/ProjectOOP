@@ -6,6 +6,7 @@ import service.CalendarManager;
 
 import java.util.List;
 
+/** {@code find <string>} — lists every task whose name or note contains {@code string}. */
 public class FindCommand implements Command {
     private CalendarManager calendarManager;
 

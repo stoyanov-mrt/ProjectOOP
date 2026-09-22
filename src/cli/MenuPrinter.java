@@ -1,6 +1,12 @@
 package cli;
 
+/**
+ * Prints the static, user-facing text for the main menu, the {@code help}
+ * command, and the {@code commands} command. Holds no state or logic of
+ * its own.
+ */
 public class MenuPrinter {
+    /** Prints the one-line-per-command menu shown once at startup. */
     public void printMainMenu() {
         System.out.println("open <file>. Open a calendar file");
         System.out.println("close. Close the currently open file");
@@ -22,6 +28,7 @@ public class MenuPrinter {
         System.out.println("-----------------");
         System.out.println("Enter choice: ");
     }
+    /** Prints the description of the common file/program commands, for {@code help}. */
     public void printHelp() {
         System.out.println("--------------------");
         System.out.println("The following commands are supported:");
@@ -35,6 +42,7 @@ public class MenuPrinter {
         System.out.println("--------------------");
 
     }
+    /** Prints the detailed description of every calendar-specific command, for {@code commands}. */
     public void printCommands() {
         System.out.println("--------------------");
         System.out.println("book <date> <starttime> <endtime> <name> <note> - Запазва час за среща с име <name> и коментар <note>\n на дата <date>" +

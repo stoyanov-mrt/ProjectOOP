@@ -6,6 +6,11 @@ import service.FileManager;
 
 import java.io.File;
 
+/**
+ * {@code close} — discards the currently open calendar from memory
+ * (without saving). No command besides {@code open} may run until another
+ * file is opened.
+ */
 public class CloseCommand implements Command {
     private final CalendarManager calendarManager;
     private final FileManager fileManager;

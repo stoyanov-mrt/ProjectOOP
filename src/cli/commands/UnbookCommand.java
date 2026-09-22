@@ -8,6 +8,7 @@ import service.CalendarManager;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/** {@code unbook <date> <starttime> <endtime>} — cancels an existing task. */
 public class UnbookCommand implements Command {
     private DateParser dateParser;
     private CalendarManager calendarManager;

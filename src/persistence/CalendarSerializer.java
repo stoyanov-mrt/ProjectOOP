@@ -21,6 +21,7 @@ public class CalendarSerializer {
     private static final String FIELD_SEPARATOR = "|";
     private static final String FIELD_SEPARATOR_REGEX = "(?<!\\\\)\\|";
 
+    /** @return {@code calendar}'s holidays and tasks encoded in the file format described above */
     public String serialize(Calendar calendar) {
         StringBuilder content = new StringBuilder();
 
@@ -42,6 +43,11 @@ public class CalendarSerializer {
         return content.toString();
     }
 
+    /**
+     * @return a {@link Calendar} rebuilt from {@code content}
+     * @throws FileOperationException if a line is outside a section, or a
+     *         date/time/task entry is malformed
+     */
     public Calendar deserialize(String content) {
         Calendar calendar = new Calendar();
         String[] lines = content.split("\\r?\\n");
@@ -100,6 +106,7 @@ public class CalendarSerializer {
         }
     }
 
+    /** Escapes {@code \}, {@code |}, and newlines so a name/note round-trips through a single pipe-separated line. */
     private String escape(String value) {
         if (value == null) {
             return "";
@@ -110,6 +117,7 @@ public class CalendarSerializer {
                 .replace("\r", "\\r");
     }
 
+    /** Reverses {@link #escape}. */
     private String unescape(String value) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < value.length(); i++) {

@@ -2,6 +2,7 @@ package cli.commands;
 
 import cli.MenuPrinter;
 
+/** {@code commands} — prints detailed descriptions of the calendar-specific commands. */
 public class ShowCommandsCommand implements Command{
     private MenuPrinter printer;
 

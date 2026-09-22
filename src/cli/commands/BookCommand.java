@@ -8,6 +8,7 @@ import service.CalendarManager;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/** {@code book <date> <starttime> <endtime> <name> <note>} — books a new task. */
 public class BookCommand implements Command {
     private DateParser dateParser;
     private CalendarManager calendarManager;

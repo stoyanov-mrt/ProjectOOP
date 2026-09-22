@@ -6,6 +6,7 @@ import service.CalendarManager;
 
 import java.time.LocalDate;
 
+/** {@code holiday <date>} — marks a date as a non-working holiday. */
 public class HolidayCommand implements Command {
     private CalendarManager calendarManager;
     private DateParser dateParser;

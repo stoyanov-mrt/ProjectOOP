@@ -7,6 +7,11 @@ import service.CalendarManager;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * {@code change <date> <starttime> <option> <newvalue>} — changes one
+ * field ({@code date}, {@code starttime}, {@code endtime}, {@code name},
+ * or {@code note}) of the task at {@code date}/{@code starttime}.
+ */
 public class ChangeCommand implements Command {
     private DateParser dateParser;
     private CalendarManager calendarManager;

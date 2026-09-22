@@ -8,6 +8,10 @@ import service.CalendarManager;
 
 import java.time.LocalDate;
 
+/**
+ * {@code findslot <fromdate> <hours>} — finds the first working-day slot
+ * of at least {@code hours} long, starting the search at {@code fromdate}.
+ */
 public class FindSlotCommand implements Command {
     private CalendarManager calendarManager;
     private DateParser dateParser;

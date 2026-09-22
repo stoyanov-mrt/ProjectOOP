@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * {@code busydays <from> <to>} — shows total booked hours per weekday over
+ * {@code [from, to]}, busiest weekday first.
+ */
 public class BusydaysCommand implements Command {
     private CalendarManager calendarManager;
     private DateParser dateParser;

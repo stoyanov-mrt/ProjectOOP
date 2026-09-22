@@ -8,6 +8,7 @@ import service.CalendarManager;
 import java.time.LocalDate;
 import java.util.List;
 
+/** {@code agenda <date>} — lists every task on {@code date}, in chronological order. */
 public class AgendaCommand implements Command {
     private DateParser dateParser;
     private CalendarManager calendarManager;

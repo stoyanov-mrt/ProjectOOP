@@ -2,6 +2,7 @@ package cli.commands;
 
 import cli.MenuPrinter;
 
+/** {@code help} — prints the common file/program commands. */
 public class HelpCommand implements Command{
     private MenuPrinter printer;
 

@@ -52,6 +52,11 @@ public class FileManager {
         return calendarSerializer.deserialize(readFile(file));
     }
 
+    /**
+     * Writes {@code calendar} back to the currently open file.
+     *
+     * @throws FileOperationException if no file is currently open
+     */
     public void save(Calendar calendar) {
         if (currentFileName == null) {
             throw new FileOperationException("No file is currently open");
@@ -59,11 +64,16 @@ public class FileManager {
         writeToFile(calendar, currentFileName);
     }
 
+    /**
+     * Writes {@code calendar} to {@code fileName} and makes it the
+     * currently open file.
+     */
     public void saveAs(Calendar calendar, String fileName) {
         writeToFile(calendar, fileName);
         setCurrentFileName(fileName);
     }
 
+    /** Forgets the currently open file name. */
     public void close() {
         this.currentFileName = null;
     }
