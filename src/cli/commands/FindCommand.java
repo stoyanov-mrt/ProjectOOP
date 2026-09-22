@@ -23,6 +23,11 @@ public class FindCommand implements Command {
 
         List<Task> tasks = calendarManager.findTaskByKeyword(keyword);
 
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks found matching \"" + keyword + "\".");
+            return;
+        }
+
         for (Task task : tasks) {
             System.out.println(task);
         }

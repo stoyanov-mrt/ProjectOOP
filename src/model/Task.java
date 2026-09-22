@@ -73,16 +73,11 @@ public class Task implements Comparable<Task>{
 
     @Override
     public int compareTo(Task o) {
-        int result = 0;
-
-        if (this.startTime.isBefore(o.getStartTime())) {
-            result = -1;
+        int dateComparison = this.date.compareTo(o.date);
+        if (dateComparison != 0) {
+            return dateComparison;
         }
-        if(this.startTime.isAfter(o.getStartTime())) {
-            result = 1;
-        }
-
-        return result;
+        return this.startTime.compareTo(o.startTime);
     }
     @Override
     public boolean equals(Object obj) {

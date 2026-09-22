@@ -114,17 +114,10 @@ public class CalendarManager {
 
     }
 
-    public void getAgenda (LocalDate date) {
-        List<Task> tasksByDate = new ArrayList<>();
-        for (Task task : currentCalendar.getTasks()) {
-            if (task.getDate().equals(date)) {
-                tasksByDate.add(task);
-            }
-        }
+    public List<Task> getAgenda(LocalDate date) {
+        List<Task> tasksByDate = currentCalendar.getTasksByDate(date);
         tasksByDate.sort(null);
-        for (Task task : tasksByDate) {
-            System.out.println(task);
-        }
+        return tasksByDate;
     }
 
     public Calendar getCurrentCalendar() {

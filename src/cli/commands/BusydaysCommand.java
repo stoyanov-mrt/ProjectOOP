@@ -35,6 +35,11 @@ public class BusydaysCommand implements Command {
 
         Map<DayOfWeek, Double> busyDays = calendarManager.busyDays(fromDate, toDate);
 
+        if (busyDays.isEmpty()) {
+            System.out.println("No tasks found between " + fromDate + " and " + toDate + ".");
+            return;
+        }
+
         List<Map.Entry<DayOfWeek, Double>> entries = new ArrayList<>(busyDays.entrySet());
 
         entries.sort((a, b) -> Double.compare(b.getValue(), a.getValue()));

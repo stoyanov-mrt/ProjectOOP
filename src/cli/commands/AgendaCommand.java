@@ -1,10 +1,12 @@
 package cli.commands;
 
 import exception.InvalidCommandException;
+import model.Task;
 import parser.DateParser;
 import service.CalendarManager;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class AgendaCommand implements Command {
     private DateParser dateParser;
@@ -21,7 +23,16 @@ public class AgendaCommand implements Command {
             throw new InvalidCommandException("Usage: agenda <date>");
         }
         LocalDate agendaDate = dateParser.parseDate(args[1]);
-        calendarManager.getAgenda(agendaDate);
+        List<Task> tasks = calendarManager.getAgenda(agendaDate);
+
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks scheduled for " + agendaDate + ".");
+            return;
+        }
+
+        for (Task task : tasks) {
+            System.out.println(task);
+        }
     }
     @Override
     public String getName() {
