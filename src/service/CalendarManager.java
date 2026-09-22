@@ -16,14 +16,26 @@ import java.util.List;
 
 public class CalendarManager {
     private Calendar currentCalendar;
+    private boolean open = false;
     private TaskValidator taskValidator = new TaskValidator();
     private DateParser dateParser = new DateParser();
 
     public CalendarManager() {
         currentCalendar = new Calendar();
     }
-    public CalendarManager(List<Task> tasks) {
-        currentCalendar = new Calendar(tasks);
+
+    public void openCalendar(Calendar calendar) {
+        currentCalendar = calendar;
+        open = true;
+    }
+
+    public void closeCalendar() {
+        currentCalendar = new Calendar();
+        open = false;
+    }
+
+    public boolean isOpen() {
+        return open;
     }
 
     public List<Task> getTasks() {
@@ -338,5 +350,53 @@ public class CalendarManager {
         }
 
         return null;
+    }
+
+    /**
+     * Like {@link #findSlot}, but the returned slot must also be free in
+     * every calendar in {@code otherCalendars}.
+     */
+    public TimeSlot findSlotWith(LocalDate fromDate, double hours, List<Calendar> otherCalendars) {
+        LocalDate date = fromDate;
+        while (date.isBefore(fromDate.plusDays(365))) {
+            if (isHolidayInAny(date, otherCalendars)) {
+                date = date.plusDays(1);
+                continue;
+            }
+            try {
+                validateWeekendDate(date);
+            } catch (DateException e) {
+                date = date.plusDays(1);
+                continue;
+            }
+
+            List<Task> combinedTasks = new ArrayList<>(currentCalendar.getTasksByDate(date));
+            for (Calendar other : otherCalendars) {
+                combinedTasks.addAll(other.getTasksByDate(date));
+            }
+            combinedTasks.sort(null);
+
+            TimeSlot freeSlot = findFreeSlot(combinedTasks, hours, date);
+
+            if (freeSlot != null) {
+                return freeSlot;
+            }
+
+            date = date.plusDays(1);
+        }
+
+        return null;
+    }
+
+    private boolean isHolidayInAny(LocalDate date, List<Calendar> otherCalendars) {
+        if (currentCalendar.getHolidays().contains(date)) {
+            return true;
+        }
+        for (Calendar other : otherCalendars) {
+            if (other.getHolidays().contains(date)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

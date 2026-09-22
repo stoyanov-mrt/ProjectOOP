@@ -2,16 +2,22 @@ package cli;
 
 public class MenuPrinter {
     public void printMainMenu() {
+        System.out.println("open <file>. Open a calendar file");
+        System.out.println("close. Close the currently open file");
+        System.out.println("save. Save changes back to the open file");
+        System.out.println("saveas <file>. Save changes to a new file");
         System.out.println("help. Help");
+        System.out.println("commands. Show detailed command descriptions");
         System.out.println("book. Book a task");
         System.out.println("unbook. Unbook a task");
-        System.out.println("agenda. Show tasks for the a day");
+        System.out.println("agenda. Show tasks for a day");
         System.out.println("change. Change a task");
         System.out.println("find. Find a task by keyword");
-        System.out.println("bookholiday. Book a date to be a holiday");
+        System.out.println("holiday. Mark a date as a holiday");
         System.out.println("busydays. Display busy days");
-        System.out.println("findslot. find a free window");
-        System.out.println("merge. Merge a calendar from a file to the current calendar");
+        System.out.println("findslot. Find a free window");
+        System.out.println("findslotwith. Find a free window that also fits another calendar");
+        System.out.println("merge. Merge a calendar from a file into the current calendar");
         System.out.println("exit. Exit program");
         System.out.println("-----------------");
         System.out.println("Enter choice: ");
@@ -19,13 +25,13 @@ public class MenuPrinter {
     public void printHelp() {
         System.out.println("--------------------");
         System.out.println("The following commands are supported:");
-        System.out.println("open <file> opens <> file");
-        System.out.println("close   closes currently opened file");
-        System.out.println("save    saves the currently open file");
-        System.out.println("saveas <file>    saves the currently ope file in <file>");
-        System.out.println("help    prints this information");
-        System.out.println("exit    exits the program");
-        System.out.println("commands    prints more specific commands");
+        System.out.println("open <file>      opens <file>");
+        System.out.println("close            closes currently opened file");
+        System.out.println("save             saves the currently open file");
+        System.out.println("saveas <file>    saves the currently open file in <file>");
+        System.out.println("help             prints this information");
+        System.out.println("commands         prints more specific commands");
+        System.out.println("exit             exits the program");
         System.out.println("--------------------");
 
     }
@@ -53,20 +59,22 @@ public class MenuPrinter {
                 "<from> и крайна дата <to> се извежда списък с дните от седмицата,\n" +
                 "подредени по критерия “брой заети часове”.");
         System.out.println("--------------------");
-        System.out.println("findslotwith <fromdate> <hours> <calendar> - Намиране на свободно място за среща, синхронизирана с даден\n" +
+        System.out.println("findslot <fromdate> <hours> - Намиране на свободно място за среща: по дадена дата\n" +
+                "<fromdate> и желана продължителност на срещата <hours> търси дата,\n" +
+                "на която е възможно да се запази такава среща, но само в работни\n" +
+                "дни и не преди 8 часа или след 17 часа.");
+        System.out.println("--------------------");
+        System.out.println("findslotwith <fromdate> <hours> <calendar> [<calendar> ...] - Намиране на свободно място за среща, синхронизирана с даден\n" +
                 "календар: по дадена дата <fromdate> и желана продължителност на\n" +
                 "срещата <hours> търси дата, на която е възможно да се запази такава\n" +
                 "среща в текущия календар и в календара, записан във файл\n" +
                 "<calendar>, но само в работни дни и не преди 8 часа или след 17\n" +
                 "часа.");
         System.out.println("--------------------");
-        System.out.println("merge <calendar> - Прехвърля всички събития от календара, записан във файл <calendar>, в текущия календар. Прехвърлянето да става в диалогов\n" +
-                "режим така, че ако има конфликт на събития потребителят да има\n" +
+        System.out.println("merge <calendar> [<calendar> ...] - Прехвърля всички събития от календара, записан във файл <calendar>, в текущия календар. Прехвърлянето става в диалогов\n" +
+                "режим така, че ако има конфликт на събития потребителят има\n" +
                 "възможност да избере кое събитие да остане и кое да се премести в\n" +
-                "друг ден и час.\n" +
-                "Пример: потребителят се е записал на спорт и е получил файл, който\n" +
-                "съдържа календар с всички тренировки и спортни събития. Той иска да\n" +
-                "прехвърли всички спортни събития в календара си.\n");
+                "друг ден и час.\n");
 
         System.out.println("--------------------");
 

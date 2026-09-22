@@ -1,15 +1,16 @@
 package cli.commands;
 
+import exception.InvalidCommandException;
 import parser.DateParser;
 import service.CalendarManager;
 
 import java.time.LocalDate;
 
-public class BookHolidayCommand implements Command {
+public class HolidayCommand implements Command {
     private CalendarManager calendarManager;
     private DateParser dateParser;
 
-    public BookHolidayCommand(CalendarManager calendarManager, DateParser dateParser) {
+    public HolidayCommand(CalendarManager calendarManager, DateParser dateParser) {
         this.calendarManager = calendarManager;
         this.dateParser = dateParser;
     }
@@ -17,7 +18,7 @@ public class BookHolidayCommand implements Command {
     @Override
     public void execute(String[] args) {
         if (args.length != 2) {
-            throw new IllegalArgumentException("Wrong number of arguments");
+            throw new InvalidCommandException("Usage: holiday <date>");
         }
 
         LocalDate bookDate = dateParser.parseDate(args[1]);
@@ -26,6 +27,6 @@ public class BookHolidayCommand implements Command {
     }
     @Override
     public String getName() {
-        return "bookholiday";
+        return "holiday";
     }
 }

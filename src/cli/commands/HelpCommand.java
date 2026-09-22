@@ -17,5 +17,9 @@ public class HelpCommand implements Command{
     public String getName() {
         return "help";
     }
+    @Override
+    public boolean requiresOpenCalendar() {
+        return false;
+    }
 
 }

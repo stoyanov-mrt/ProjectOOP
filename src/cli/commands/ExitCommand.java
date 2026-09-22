@@ -10,4 +10,8 @@ public class ExitCommand implements Command {
     public String getName() {
         return "exit";
     }
+    @Override
+    public boolean requiresOpenCalendar() {
+        return false;
+    }
 }

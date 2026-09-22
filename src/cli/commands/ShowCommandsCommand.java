@@ -17,4 +17,8 @@ public class ShowCommandsCommand implements Command{
     public String getName() {
         return "commands";
     }
+    @Override
+    public boolean requiresOpenCalendar() {
+        return false;
+    }
 }

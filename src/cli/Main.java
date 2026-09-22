@@ -5,8 +5,8 @@ import exception.CalendarException;
 import java.util.Scanner;
 
 public class Main {
-    protected CommandLineDispatcher cld = new CommandLineDispatcher();
     protected Scanner sc = new Scanner(System.in);
+    protected CommandLineDispatcher cld = new CommandLineDispatcher(sc);
 
     public void run() {
         boolean isRunning = true;
