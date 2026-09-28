@@ -34,6 +34,7 @@ public class ChangeCommand implements Command {
         String newValue = args[4];
 
         calendarManager.changeTask(date, startTime, option, newValue);
+        System.out.println("Successfully changed " + option.toLowerCase() + " of the task on " + date + " at " + startTime + ".");
 
     }
     @Override

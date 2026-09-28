@@ -25,6 +25,7 @@ public class HolidayCommand implements Command {
         LocalDate bookDate = dateParser.parseDate(args[1]);
 
         calendarManager.bookHoliday(bookDate);
+        System.out.println("Successfully marked " + bookDate + " as a holiday.");
     }
     @Override
     public String getName() {

@@ -30,6 +30,7 @@ public class BookCommand implements Command {
         LocalTime endTime = dateParser.parseTime(args[3]);
         Task taskToBook = new Task(name, note, date, startTime, endTime);
         calendarManager.bookTask(taskToBook);
+        System.out.println("Successfully booked \"" + name + "\" on " + date + " from " + startTime + " to " + endTime + ".");
     }
     @Override
     public String getName() {

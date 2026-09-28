@@ -29,6 +29,7 @@ public class UnbookCommand implements Command {
 
         Task taskToUnbook = new Task( unbookDate, unbookStartTime, unbookEndTime);
         calendarManager.unbookTask(taskToUnbook);
+        System.out.println("Successfully unbooked the task on " + unbookDate + " from " + unbookStartTime + " to " + unbookEndTime + ".");
     }
     @Override
     public String getName() {
